@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<!-- 引入资源文件 -->
+	<#include "../../common/res.html" />
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		table{
+			margin: 0 auto;
+		}
+		table tr td,th{
+			padding: 5px 10px;
+		}
+		table tr td:first-child{
+			text-align: right;
+		}
+		table input{
+			width: 500px;
+			height: 20px;
+			padding: 0 5px;
+		}
+		table textarea{
+			width: 100%;
+		}
+		table span{
+			color: red;
+		}
+		table{
+			margin-top: 20px;
+		}
+	</style>
+	<script src="${s.base}/res/ckedit/ckeditor.js"></script>
+	<script type="text/javascript">
+        CKEDITOR.replace('newsMatter');
+	</script>
+</head>
+<body>
+<!-- top 导航 -->
+<#include "../../common/header.html" />
+
+<!-- 菜单导航 -->
+<#include "../cms-nav.html" />
+<div class="content">
+	<form id="newsContent" action="${s.base}/news/insertNews.html" method="post">
+	<table border="1" align="center" width="980px" cellpadding="0" cellspacing="0">
+		<tr>
+			<th colspan="2">添加新闻</th>
+		</tr>
+		<tr>
+			<td>
+				<span>*</span>
+				标题名称:
+			</td>
+			<td>
+				<input type="text" name="newsTitle" id="newsTitle">
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				作者:
+			</td>
+			<td>
+				<input type="text" name="newsAuthor" id="newsAuthor">
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				作者信息:
+			</td>
+			<td>
+				<input type="text" name="newsAuthorinfo" id="newsAuthorinfo">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				新闻来源:
+			</td>
+			<td>
+				<input type="text" name="newsSource" id="newsSource">
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<span>*</span>
+				类别:
+			</td>
+			<td>
+				<select name="newsType" id="newsType">
+					<option value="0">企业新闻</option>
+					<option value="1">行业动态</option>
+				</select>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<textarea name="newsContent" id="newsMatter" class="ckeditor" cols="30" rows="10"></textarea>
+			</td>
+		</tr>
+	</table>
+        <input type="submit" name="提交" />
+	</form>
+</div>
+
+</body>
+</html>

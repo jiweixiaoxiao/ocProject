@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.college.core.news.dao.NewsDao" >
+	<resultMap id="BaseResultMap" type="com.online.college.core.news.domain.News" >
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="news_title" property="newsTitle" jdbcType="VARCHAR" />
+		<result column="news_times" property="newsTimes" jdbcType="TIMESTAMP" />
+		<result column="news_author" property="newsAuthor" jdbcType="VARCHAR" />
+		<result column="news_authorinfo" property="newsAuthorinfo" jdbcType="VARCHAR" />
+		<result column="news_source" property="newsSource" jdbcType="VARCHAR" />
+		<result column="news_images" property="newsImages" jdbcType="VARCHAR" />
+		<result column="news_admin" property="newsAdmin" jdbcType="VARCHAR" />
+		<result column="new_updatetime" property="newUpdatetime" jdbcType="TIMESTAMP" />
+		<result column="news_delete" property="newsDelete" jdbcType="INTEGER" />
+		<result column="news_mark" property="newsMark" jdbcType="VARCHAR" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.online.college.core.news.domain.News" extends="BaseResultMap" >
+		<result column="news_content" property="newsContent" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List" >
+		id, news_title, news_times, news_author, news_authorinfo, news_source, news_images,
+		news_admin, new_updatetime, news_delete, news_mark
+	</sql>
+	<sql id="Blob_Column_List" >
+		news_content
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from t_news
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<select id="queryPage" resultType="com.online.college.core.news.domain.News">
+		SELECT
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		FROM t_news
+		WHERE news_delete = 0
+		ORDER BY news_times DESC
+		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER}
+	</select>
+
+
+	<select id="getTotalItemsCount" parameterType="com.online.college.core.news.domain.News" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM t_news
+		WHERE news_delete = 0
+	</select>
+
+
+
+	<insert id="insert" parameterType="com.online.college.core.news.domain.News" >
+		insert into t_news (id, news_title, news_times,
+		news_author, news_authorinfo, news_source,
+		news_images, news_admin, new_updatetime,
+		news_delete, news_mark, news_content
+		)
+		values (#{id,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsTimes,jdbcType=TIMESTAMP},
+		#{newsAuthor,jdbcType=VARCHAR}, #{newsAuthorinfo,jdbcType=VARCHAR}, #{newsSource,jdbcType=VARCHAR},
+		#{newsImages,jdbcType=VARCHAR}, #{newsAdmin,jdbcType=VARCHAR}, #{newUpdatetime,jdbcType=TIMESTAMP},
+		#{newsDelete,jdbcType=INTEGER}, #{newsMark,jdbcType=VARCHAR}, #{newsContent,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.online.college.core.news.domain.News" >
+		insert into t_news
+		<trim prefix="(" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				id,
+			</if>
+			<if test="newsTitle != null" >
+				news_title,
+			</if>
+			<if test="newsTimes != null" >
+				news_times,
+			</if>
+			<if test="newsAuthor != null" >
+				news_author,
+			</if>
+			<if test="newsAuthorinfo != null" >
+				news_authorinfo,
+			</if>
+			<if test="newsSource != null" >
+				news_source,
+			</if>
+			<if test="newsImages != null" >
+				news_images,
+			</if>
+			<if test="newsAdmin != null" >
+				news_admin,
+			</if>
+			<if test="newUpdatetime != null" >
+				new_updatetime,
+			</if>
+			<if test="newsDelete != null" >
+				news_delete,
+			</if>
+			<if test="newsMark != null" >
+				news_mark,
+			</if>
+			<if test="newsContent != null" >
+				news_content,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides="," >
+			<if test="id != null" >
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="newsTitle != null" >
+				#{newsTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTimes != null" >
+				#{newsTimes,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newsAuthor != null" >
+				#{newsAuthor,jdbcType=VARCHAR},
+			</if>
+			<if test="newsAuthorinfo != null" >
+				#{newsAuthorinfo,jdbcType=VARCHAR},
+			</if>
+			<if test="newsSource != null" >
+				#{newsSource,jdbcType=VARCHAR},
+			</if>
+			<if test="newsImages != null" >
+				#{newsImages,jdbcType=VARCHAR},
+			</if>
+			<if test="newsAdmin != null" >
+				#{newsAdmin,jdbcType=VARCHAR},
+			</if>
+			<if test="newUpdatetime != null" >
+				#{newUpdatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newsDelete != null" >
+				#{newsDelete,jdbcType=INTEGER},
+			</if>
+			<if test="newsMark != null" >
+				#{newsMark,jdbcType=VARCHAR},
+			</if>
+			<if test="newsContent != null" >
+				#{newsContent,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.online.college.core.news.domain.News" >
+		update t_news
+		<set >
+			<if test="newsTitle != null" >
+				news_title = #{newsTitle,jdbcType=VARCHAR},
+			</if>
+			<if test="newsTimes != null" >
+				news_times = #{newsTimes,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newsAuthor != null" >
+				news_author = #{newsAuthor,jdbcType=VARCHAR},
+			</if>
+			<if test="newsAuthorinfo != null" >
+				news_authorinfo = #{newsAuthorinfo,jdbcType=VARCHAR},
+			</if>
+			<if test="newsSource != null" >
+				news_source = #{newsSource,jdbcType=VARCHAR},
+			</if>
+			<if test="newsImages != null" >
+				news_images = #{newsImages,jdbcType=VARCHAR},
+			</if>
+			<if test="newsAdmin != null" >
+				news_admin = #{newsAdmin,jdbcType=VARCHAR},
+			</if>
+			<if test="newUpdatetime != null" >
+				new_updatetime = #{newUpdatetime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="newsDelete != null" >
+				news_delete = #{newsDelete,jdbcType=INTEGER},
+			</if>
+			<if test="newsMark != null" >
+				news_mark = #{newsMark,jdbcType=VARCHAR},
+			</if>
+			<if test="newsContent != null" >
+				news_content = #{newsContent,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.online.college.core.news.domain.News" >
+		update t_news
+		set news_title = #{newsTitle,jdbcType=VARCHAR},
+		news_times = #{newsTimes,jdbcType=TIMESTAMP},
+		news_author = #{newsAuthor,jdbcType=VARCHAR},
+		news_authorinfo = #{newsAuthorinfo,jdbcType=VARCHAR},
+		news_source = #{newsSource,jdbcType=VARCHAR},
+		news_images = #{newsImages,jdbcType=VARCHAR},
+		news_admin = #{newsAdmin,jdbcType=VARCHAR},
+		new_updatetime = #{newUpdatetime,jdbcType=TIMESTAMP},
+		news_delete = #{newsDelete,jdbcType=INTEGER},
+		news_mark = #{newsMark,jdbcType=VARCHAR},
+		news_content = #{newsContent,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.online.college.core.news.domain.News" >
+		update t_news
+		set news_title = #{newsTitle,jdbcType=VARCHAR},
+		news_times = #{newsTimes,jdbcType=TIMESTAMP},
+		news_author = #{newsAuthor,jdbcType=VARCHAR},
+		news_authorinfo = #{newsAuthorinfo,jdbcType=VARCHAR},
+		news_source = #{newsSource,jdbcType=VARCHAR},
+		news_images = #{newsImages,jdbcType=VARCHAR},
+		news_admin = #{newsAdmin,jdbcType=VARCHAR},
+		new_updatetime = #{newUpdatetime,jdbcType=TIMESTAMP},
+		news_delete = #{newsDelete,jdbcType=INTEGER},
+		news_mark = #{newsMark,jdbcType=VARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		UPDATE t_news
+		set news_delete = 1
+		WHERE id = #{id,jdbcType=INTEGER}
+	</update>
+</mapper>

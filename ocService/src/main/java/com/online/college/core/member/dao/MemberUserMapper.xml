@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://10.20.91.130/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.college.core.member.dao.MemberUserDao">
+
+	<resultMap id="BeanResultMap" type="com.online.college.core.member.dto.MemberUser">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="member_name" property="userName" jdbcType="VARCHAR" />
+		<result column="member_school" property="memberSchool"
+			jdbcType="VARCHAR" />
+		<result column="member_phone" property="memberPhone" jdbcType="VARCHAR" />
+		<result column="member_email" property="memberEmail" jdbcType="VARCHAR" />
+		<result column="member_wechat" property="memberWechat"
+			jdbcType="VARCHAR" />
+		<result column="member_graduationDate" property="memberGraduationDate"
+			jdbcType="VARCHAR" />
+		<result column="member_loginIp" property="memberLoginIp"
+			jdbcType="VARCHAR" />
+		<result column="member_loginTime" property="memberLoginTime"
+			jdbcType="TIMESTAMP" />
+		<result column="member_statu" property="memberStatu" jdbcType="INTEGER" />
+		<result column="member_examStatu" property="memberExamStatu"
+			jdbcType="INTEGER" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, member_name, member_school, member_phone, member_email, member_wechat, member_graduationDate,
+		member_loginIp, member_loginTime, member_statu, member_examStatu, member_delStatu
+	</sql>
+
+	<select id="queryAll" parameterType="com.online.college.core.member.dto.MemberUser" resultType="com.online.college.core.member.dto.MemberUser">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_memberUser WHERE member_delStatu = 0 ORDER BY id
+	</select>
+
+	<select id="selectByPrimaryKey" parameterType="java.lang.Long"  resultMap="BeanResultMap">
+		SELECT
+		<include refid="Base_Column_List"  />
+		FROM t_memberUser
+		WHERE id = #{id, jdbcType=INTEGER}
+	</select>
+
+	<select id="queryPage" resultType="com.online.college.core.member.dto.MemberUser">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM t_memberUser
+		WHERE member_delStatu = 0
+		ORDER BY member_loginTime DESC
+		LIMIT #{param2.startIndex, jdbcType=INTEGER} , #{param2.pageSize, jdbcType=INTEGER}
+	</select>
+	<select id="getTotalItemsCount" parameterType="com.online.college.core.member.dto.MemberUser" resultType="java.lang.Integer">
+		SELECT COUNT(*) FROM t_memberUser
+		WHERE member_delStatu = 0
+	</select>
+
+	<update id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+		update t_memberUser
+		<set>
+			member_delStatu = 1
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<insert id="insertSelective" parameterType="com.online.college.core.member.dto.MemberUser">
+		insert into t_memberUser
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="memberName != null">
+				member_name,
+			</if>
+			<if test="memberSchool != null">
+				member_school,
+			</if>
+			<if test="memberPhone != null">
+				member_phone,
+			</if>
+			<if test="memberEmail != null">
+				member_email,
+			</if>
+			<if test="memberWechat != null">
+				member_wechat,
+			</if>
+			<if test="memberGraduationDate != null">
+				member_graduationDate,
+			</if>
+			<if test="memberLoginIp != null">
+				member_loginIp,
+			</if>
+			<if test="memberLoginTime != null">
+				member_loginTime,
+			</if>
+			<if test="memberStatu != null">
+				member_statu,
+			</if>
+			<if test="memberExamStatu != null">
+				member_examStatu,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="memberName != null">
+				#{memberName,jdbcType=VARCHAR},
+			</if>
+			<if test="memberSchool != null">
+				#{memberSchool,jdbcType=VARCHAR},
+			</if>
+			<if test="memberPhone != null">
+				#{memberPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="memberEmail != null">
+				#{memberEmail,jdbcType=VARCHAR},
+			</if>
+			<if test="memberWechat != null">
+				#{memberWechat,jdbcType=DATE},
+			</if>
+			<if test="memberGraduationDate != null">
+				#{memberGraduationDate,jdbcType=VARCHAR},
+			</if>
+			<if test="memberLoginIp != null">
+				#{memberLoginIp,jdbcType=VARCHAR},
+			</if>
+			<if test="memberLoginTime != null">
+				#{memberLoginTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="memberStatu != null">
+				#{memberStatu,jdbcType=INTEGER},
+			</if>
+			<if test="memberExamStatu != null">
+				#{memberExamStatu,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+
+    <!-- 更新数据 -->
+    <update id="updateByPrimaryKeySelective" parameterType="com.online.college.core.member.dto.MemberUser">
+        update t_memberUser
+        <set>
+            <if test="memberName != null">
+                member_name = #{memberName,jdbcType=VARCHAR},
+            </if>
+            <if test="memberSchool != null">
+                member_school = #{memberSchool,jdbcType=VARCHAR},
+            </if>
+            <if test="memberPhone != null">
+                member_phone = #{memberPhone,jdbcType=VARCHAR},
+            </if>
+            <if test="memberEmail != null">
+                member_email = #{memberEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="memberWechat != null">
+                member_wechat = #{memberWechat,jdbcType=VARCHAR},
+            </if>
+            <if test="memberGraduationDate != null">
+                member_graduationDate = #{memberGraduationDate,jdbcType=VARCHAR},
+            </if>
+            <if test="memberLoginIp != null">
+                member_loginIp = #{memberLoginIp,jdbcType=VARCHAR},
+            </if>
+            <if test="memberLoginTime != null">
+                member_loginTime = #{memberLoginTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="memberStatu != null">
+                member_statu = #{memberStatu,jdbcType=INTEGER},
+            </if>
+            <if test="memberExamTtatu != null">
+                member_examStatu = #{memberExamStatu,jdbcType=INTEGER},
+            </if>
+            <if test="memberDelStatu != null">
+                member_delStatu = #{memberDelStatu,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateByPrimaryKey" parameterType="com.online.college.core.member.dto.MemberUser">
+        update t_memberUser
+        set member_name = #{memberName,jdbcType=VARCHAR},
+        member_school = #{memberSchool,jdbcType=VARCHAR},
+        member_phone = #{memberPhone,jdbcType=VARCHAR},
+        member_email = #{memberEmail,jdbcType=VARCHAR},
+        member_wechat = #{memberWechat,jdbcType=VARCHAR},
+        member_graduationDate = #{memberGraduationDate,jdbcType=VARCHAR},
+        member_loginIp = #{memberLoginIp,jdbcType=VARCHAR},
+        member_loginTime = #{memberLoginTime,jdbcType=TIMESTAMP},
+        member_statu = #{memberStatu,jdbcType=INTEGER},
+        member_examStatu = #{memberExamStatu,jdbcType=INTEGER},
+        member_delStatu = #{memberDelStatu,jdbcType=INTEGER}
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <!--更新结束 -->
+</mapper>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <#include "../../common/res.html" />
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .release {
+            width: 980px;
+            margin: 0 auto;
+        }
+
+        .release .release-content {
+            margin: 30px 0;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        p {
+            font-size: 14px;
+            overflow: hidden; /*超出部分隐藏*/
+            white-space: nowrap; /*不换行*/
+            text-overflow: ellipsis; /*超出部分文字以...显示*/
+        }
+
+        .release-content-left img {
+            width: 200px;
+            height: 100px;
+        }
+
+        .release-content-left {
+            float: left;
+        }
+
+        .release-content-center {
+            float: left;
+            margin-left: 40px;
+        }
+
+        .release-content-right {
+            float: left;
+            margin-left: 40px;
+        }
+
+        .release-content-left dt {
+            float: left;
+        }
+
+        .release-content-left dd {
+            width: 300px;
+            float: left;
+            margin-left: 20px;
+        }
+
+        .release-content-title {
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 16px;
+            padding-bottom: 5px;
+            color: #327ab7;
+        }
+
+        .releaseTime {
+            font-size: 16px;
+            width: 100px;
+        }
+
+        .fwb {
+            font-weight: bold;
+        }
+
+        .releaseTime p:first-child {
+            margin-bottom: 20px;
+        }
+
+        .release-content-center div {
+            float: left;
+        }
+
+        .discuss {
+            margin-left: 40px;
+            width: 150px;
+        }
+
+        .discuss p {
+            padding-bottom: 6px;
+
+        }
+
+        .release-content-right button {
+            width: 50px;
+            height: 30px;
+            background-color: #327ab7;
+            display: block;
+            margin: 10px 0;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        /* .release-content .release-content-left p.news-content{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+            white-space:normal;
+        } */
+        .release-content .release-content-left p.news-content {
+            position: relative;
+            line-height: 1.4em;
+            /* 3 times the line-height to show 3 lines */
+            height: 5.6em;
+            overflow: hidden;
+            white-space: normal;
+        }
+
+        .release-content .release-content-left p.news-content::after {
+            content: "...";
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0 20px 1px 45px;
+            background: url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+        }
+    </style>
+
+</head>
+<body>
+<#include "../../common/header.html" />
+
+<!-- 菜单导航 -->
+<#include "../cms-nav.html" />
+<div class="content">
+    <section class="release">
+        <div class="release-content">
+            <dl class="release-content-left">
+                <dt>
+                    <img src="images/news/jjzy.jpg" alt="">
+                </dt>
+                <dd>
+                    <p class="release-content-title">以工匠精神引领高技能人才培养</p>
+                    <p class="news-content">
+                        世界上的制造业强国，都有一支数量充足的高素质技术技能人才队伍，也都有适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技
+                    </p>
+                </dd>
+            </dl>
+            <div class="release-content-center">
+                <div class="releaseTime fwb">
+                    <p>
+                        发布时间:<br/>2015-10-15
+                    </p>
+                    <p>
+                        发布人:<br/>小朱朱小朱朱小朱朱
+                    </p>
+                </div>
+                <div class="discuss fwb">
+                    <p>评论次数:10</p>
+                    <p>最新评论:好好学习，天天敲代码好好学习，天天敲代码好好学习，天天敲代码</p>
+                    <p>推荐次数:10</p>
+                    <p>浏览次数:10</p>
+                </div>
+            </div>
+            <div class="release-content-right">
+                <button class="update">更新</button>
+                <button class="del">删除</button>
+            </div>
+        </div>
+        <div class="release-content">
+            <dl class="release-content-left">
+                <dt>
+                    <img src="images/news/jjzy.jpg" alt="">
+                </dt>
+                <dd>
+                    <p class="release-content-title">以工匠精神引领高技能人才培养</p>
+                    <p class="news-content">
+                        世界上的制造业强国，都有一支数量充足的高素质技术技能人才队伍，也都有适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技适合自己国家的技术技能人才培养制度。具体到我国，主要由中、高等职业院校和企业承担培养高技
+                    </p>
+                </dd>
+            </dl>
+            <div class="release-content-center">
+                <div class="releaseTime fwb">
+                    <p>
+                        发布时间:<br/>2015-10-15
+                    </p>
+                    <p>
+                        发布人:<br/>小朱朱小朱朱小朱朱
+                    </p>
+                </div>
+                <div class="discuss fwb">
+                    <p>评论次数:10</p>
+                    <p>最新评论:好好学习，天天敲代码好好学习，天天敲代码好好学习，天天敲代码</p>
+                    <p>推荐次数:10</p>
+                    <p>浏览次数:10</p>
+                </div>
+            </div>
+            <div class="release-content-right">
+                <button class="update">更新</button>
+                <button class="del">删除</button>
+            </div>
+        </div>
+    </section>
+</div>
+
+</body>
+</html>
