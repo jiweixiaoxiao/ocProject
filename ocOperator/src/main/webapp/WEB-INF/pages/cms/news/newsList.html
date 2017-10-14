@@ -5,124 +5,146 @@
     <title>Document</title>
     <#include "../../common/res.html" />
     <style type="text/css">
-        *{
+        * {
             margin: 0;
             padding: 0;
         }
-        .release{
+
+        .release {
             width: 980px;
             margin: 0 auto;
         }
-        .release-main{
+
+        .release-main {
             border: 1px solid #cdcdcd;
             padding: 0 10px 20px;
         }
-        .release .release-content{
+
+        .release .release-content {
             font-size: 14px;
             overflow: hidden;
             border-bottom: 1px solid #cdcdcd;
             padding: 20px 0;
         }
-        p{
+
+        p {
             font-size: 14px;
-            overflow: hidden;/*超出部分隐藏*/
-            white-space: nowrap;/*不换行*/
-            text-overflow:ellipsis;/*超出部分文字以...显示*/
+            overflow: hidden; /*超出部分隐藏*/
+            white-space: nowrap; /*不换行*/
+            text-overflow: ellipsis; /*超出部分文字以...显示*/
         }
-        .release-content-left img{
+
+        .release-content-left img {
             width: 200px;
             height: 100px;
         }
-        .release-content-left{
+
+        .release-content-left {
             float: left;
         }
-        .release-content-center{
-            float: left;
-            margin-left: 40px;
-        }
-        .release-content-right{
+
+        .release-content-center {
             float: left;
             margin-left: 40px;
         }
-        .release-content-left dt{
+
+        .release-content-right {
+            float: left;
+            margin-left: 40px;
+        }
+
+        .release-content-left dt {
             float: left;
         }
-        .release-content-left dd{
+
+        .release-content-left dd {
             width: 300px;
             float: left;
             margin-left: 20px;
         }
-        .release-content-title{
+
+        .release-content-title {
             font-size: 16px;
             font-weight: bold;
             line-height: 16px;
             padding-bottom: 5px;
             color: #327ab7;
         }
-        .releaseTime{
+
+        .releaseTime {
             font-size: 16px;
             width: 100px;
         }
-        .fwb{
+
+        .fwb {
             font-weight: bold;
         }
-        .releaseTime p:first-child{
+
+        .releaseTime p:first-child {
             margin-bottom: 20px;
         }
-        .release-content-center div{
+
+        .release-content-center div {
             float: left;
         }
-        .discuss{
+
+        .discuss {
             margin-left: 40px;
             width: 150px;
         }
-        .discuss p{
+
+        .discuss p {
             padding-bottom: 6px;
 
         }
-        .release-content-right button{
+
+        .release-content-right button {
             width: 50px;
             height: 30px;
             background-color: #327ab7;
             display: block;
             margin: 10px 0;
-            border-radius:5px;
+            border-radius: 5px;
             color: #fff;
         }
 
         .release-content .release-content-left p.news-content {
-            position:relative;
-            line-height:1.4em;
+            position: relative;
+            line-height: 1.4em;
             /* 3 times the line-height to show 3 lines */
-            height:5.6em;
-            overflow:hidden;
-            white-space:normal;
+            height: 5.6em;
+            overflow: hidden;
+            white-space: normal;
         }
+
         .release-content .release-content-left p.news-content::after {
-            content:"...";
-            font-weight:bold;
-            position:absolute;
-            bottom:0;
-            right:0;
-            padding:0 20px 1px 45px;
-            background:url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
+            content: "...";
+            font-weight: bold;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 0 20px 1px 45px;
+            background: url(http://newimg88.b0.upaiyun.com/newimg88/2014/09/ellipsis_bg.png) repeat-y;
         }
 
         /* release-title */
-        .release-title{
+        .release-title {
             width: 980px;
             height: 40px;
             border: 1px solid #cdcdcd;
             margin: 20px 0;
         }
-        .fl{
+
+        .fl {
             float: left;
         }
-        .fz16{
+
+        .fz16 {
             font-size: 16px;
             font-family: "微软雅黑";
         }
-        .turnoverTime{
+
+        .turnoverTime {
             position: relative;
             display: block;
             width: 200px;
@@ -135,6 +157,7 @@
             font-size: 16px;
             font-family: "微软雅黑";
         }
+
         .triangle-down {
             position: absolute;
             right: 45px;
@@ -145,33 +168,37 @@
             border-right: 8px solid transparent;
             border-top: 10px solid #327ab7;
         }
-        .weight{
+
+        .weight {
             color: #327ab7;
             line-height: 40px;
             padding: 0 50px;
         }
-        .release-title-center input{
+
+        .release-title-center input {
             width: 200px;
             height: 30px;
             margin: 3px 0;
             outline: none;
             padding: 0 3px;
         }
-        .release-title-center button{
+
+        .release-title-center button {
             padding: 5px 10px;
             background-color: #0089d3;
             outline: none;
-            border:0;
+            border: 0;
             color: #fff;
             border-radius: 3px;
             cursor: pointer;
         }
-        .release-title-center .search{
+
+        .release-title-center .search {
             margin: 0 20px;
         }
 
     </style>
-
+    <script src="${s.base}/res/js/news.js"></script>
 </head>
 <body>
 <#include "../../common/header.html" />
@@ -179,76 +206,82 @@
 <!-- 菜单导航 -->
 <#include "../cms-nav.html" />
 <div class="content">
-    <section class="release">
-        <div class="release-title">
-            <div class="release-title-left fl">
-                <button class="turnoverTime fl">
-                    更新时间
-                    <span class="triangle-down"></span>
-                </button>
-                <p class="fl fz16 weight">推荐权重</p>
-            </div>
-            <div class="release-title-center fl">
-                <input type="text" placeholder="请输入关键字">
-                <button class="search fz16">搜索</button>
-                <button class="addCourse fz16">+ 添加新闻</button>
-            </div>
-            <div class="release-title-right fl"></div>
-        </div>
-
-        <div class="release-main">
-            <#if (page.items)?? >
-                <#list page.items as item>
-
-                    <form id="newsForm">
-            <div class="release-content">
-
-                <dl class="release-content-left">
-                    <dt>
-     <!-- News(id=4, newsTitle=事实上, newsTimes=Thu Oct 12 15:46:42 CST 2017, newsAuthor=事实上, newsAuthorinfo=事实上,
-     newsSource=事实上, newsImages=null, newsAdmin=jiwei, newUpdatetime=null, newsDelete=0, newsMark=null,
-     newsBrowsenum=0, newsRecommendnum=0, newsContent=<p>三三四四</p>)-->
-                        <#if (item.newsImages)?? && item.newsImages != '' >
-                        <img src="${item.newsImages!}" alt="">
-                            <#else>
-                                <img src="${s.base}/res/i/course.png" style="width: 180px;height:100px;float: left;">
-                        </#if>
-                    </dt>
-                    <dd>
-                        <p class="release-content-title">${item.newsTitle!}</p>
-                        <p class="news-content">
-                            ${item.newsContent}
-                        </p>
-                    </dd>
-                </dl>
-                <div class="release-content-center">
-                    <div class="releaseTime fwb">
-                        <p>
-                            发布时间:<br/>${item.newsTimes?string('yyyy-MM-dd HH:mm')}
-                        </p>
-                        <p>
-                            发布人:<br/>${item.newsAuthor}
-                        </p>
-                    </div>
-                    <div class="discuss fwb">
-                        <p>评论次数:${item.newsRecommendnum}</p>
-                        <p>	最新评论:………………………………</p>
-                        <p>推荐次数:${item.newsRecommendnum}</p>
-                        <p>浏览次数:${item.newsBrowsenum}</p>
-                    </div>
+    <form id="queryPageForm" class="mt-15" action="" method="POST">
+        <section class="release">
+            <div class="release-title">
+                <div class="release-title-left fl">
+                    <button class="turnoverTime fl">
+                        更新时间
+                        <span class="triangle-down"></span>
+                    </button>
+                    <p class="fl fz16 weight">推荐权重</p>
                 </div>
-                <div class="release-content-right">
-                    <button class="update">更新</button>
-                    <button class="del">删除</button>
+                <div class="release-title-center fl">
+                    <input type="text" placeholder="请输入关键字">
+                    <button class="search fz16">搜索</button>
+                    <button class="addCourse fz16" id="addnews" onclick="addtonew()">+ 添加新闻</button>
                 </div>
+                <div class="release-title-right fl"></div>
             </div>
-                    </form>
-                </#list>
-            </#if>
-        </div>
 
-    </section>
+            <div class="release-main">
+                <#if (page.items)?? >
+                    <#list page.items as item>
+
+                        <form id="newsForm">
+                            <div class="release-content">
+
+                                <dl class="release-content-left">
+                                    <dt>
+                                        <!-- News(id=4, newsTitle=事实上, newsTimes=Thu Oct 12 15:46:42 CST 2017, newsAuthor=事实上, newsAuthorinfo=事实上,
+                                        newsSource=事实上, newsImages=null, newsAdmin=jiwei, newUpdatetime=null, newsDelete=0, newsMark=null,
+                                        newsBrowsenum=0, newsRecommendnum=0, newsContent=<p>三三四四</p>)-->
+                                        <#if (item.newsImages)?? && item.newsImages != '' >
+                                            <img src="${item.newsImages!}" alt="">
+                                            <#else>
+                                                <img src="${s.base}/res/i/course.png"
+                                                     style="width: 180px;height:100px;float: left;">
+                                        </#if>
+                                    </dt>
+                                    <dd>
+                                        <p class="release-content-title">${item.newsTitle!}</p>
+                                        <p class="news-content">
+                                            ${item.newsContent}
+                                        </p>
+                                    </dd>
+                                </dl>
+                                <div class="release-content-center">
+                                    <div class="releaseTime fwb">
+                                        <p>
+                                            发布时间:<br/>${item.newsTimes?string('yyyy-MM-dd HH:mm')}
+                                        </p>
+                                        <p>
+                                            发布人:<br/>${item.newsAuthor}
+                                        </p>
+                                    </div>
+                                    <div class="discuss fwb">
+                                        <p>评论次数:${item.newsRecommendnum}</p>
+                                        <p> 最新评论:………………………………</p>
+                                        <p>推荐次数:${item.newsRecommendnum}</p>
+                                        <p>浏览次数:${item.newsBrowsenum}</p>
+                                    </div>
+                                </div>
+                                <div class="release-content-right">
+                                    <button class="update">更新</button>
+                                    <button class="del">删除</button>
+                                </div>
+                            </div>
+                        </form>
+                    </#list>
+                </#if>
+                <p>
+                    <#include "../../common/tailPage.html"/>
+                </p>
+            </div>
+
+
+        </section>
+    </form>
 </div>
-
 </body>
 </html>

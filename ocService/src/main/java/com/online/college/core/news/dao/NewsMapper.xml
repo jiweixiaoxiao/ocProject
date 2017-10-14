@@ -13,13 +13,15 @@
 		<result column="new_updatetime" property="newUpdatetime" jdbcType="TIMESTAMP" />
 		<result column="news_delete" property="newsDelete" jdbcType="INTEGER" />
 		<result column="news_mark" property="newsMark" jdbcType="VARCHAR" />
+		<result column="news_browsenum" jdbcType="INTEGER" property="newsBrowsenum" />
+		<result column="news_recommendnum" jdbcType="INTEGER" property="newsRecommendnum" />
 	</resultMap>
 	<resultMap id="ResultMapWithBLOBs" type="com.online.college.core.news.domain.News" extends="BaseResultMap" >
 		<result column="news_content" property="newsContent" jdbcType="LONGVARCHAR" />
 	</resultMap>
 	<sql id="Base_Column_List" >
 		id, news_title, news_times, news_author, news_authorinfo, news_source, news_images,
-		news_admin, new_updatetime, news_delete, news_mark
+		news_admin, new_updatetime, news_delete, news_mark, news_browsenum, news_recommendnum
 	</sql>
 	<sql id="Blob_Column_List" >
 		news_content
@@ -55,12 +57,14 @@
 		insert into t_news (id, news_title, news_times,
 		news_author, news_authorinfo, news_source,
 		news_images, news_admin, new_updatetime,
-		news_delete, news_mark, news_content
+		news_delete, news_mark, news_content, news_browsenum,
+      news_recommendnum
 		)
 		values (#{id,jdbcType=INTEGER}, #{newsTitle,jdbcType=VARCHAR}, #{newsTimes,jdbcType=TIMESTAMP},
 		#{newsAuthor,jdbcType=VARCHAR}, #{newsAuthorinfo,jdbcType=VARCHAR}, #{newsSource,jdbcType=VARCHAR},
 		#{newsImages,jdbcType=VARCHAR}, #{newsAdmin,jdbcType=VARCHAR}, #{newUpdatetime,jdbcType=TIMESTAMP},
-		#{newsDelete,jdbcType=INTEGER}, #{newsMark,jdbcType=VARCHAR}, #{newsContent,jdbcType=LONGVARCHAR}
+		#{newsDelete,jdbcType=INTEGER}, #{newsMark,jdbcType=VARCHAR}, #{newsContent,jdbcType=LONGVARCHAR},
+		#{newsBrowsenum,jdbcType=INTEGER},#{newsRecommendnum,jdbcType=INTEGER}
 		)
 	</insert>
 	<insert id="insertSelective" parameterType="com.online.college.core.news.domain.News" >
@@ -102,6 +106,12 @@
 			<if test="newsContent != null" >
 				news_content,
 			</if>
+			<if test="newsBrowsenum != null">
+				news_browsenum,
+			</if>
+			<if test="newsRecommendnum != null">
+				news_recommendnum,
+			</if>
 		</trim>
 		<trim prefix="values (" suffix=")" suffixOverrides="," >
 			<if test="id != null" >
@@ -139,6 +149,12 @@
 			</if>
 			<if test="newsContent != null" >
 				#{newsContent,jdbcType=LONGVARCHAR},
+			</if>
+			<if test="newsBrowsenum != null">
+				#{newsBrowsenum,jdbcType=INTEGER},
+			</if>
+			<if test="newsRecommendnum != null">
+				#{newsRecommendnum,jdbcType=INTEGER},
 			</if>
 		</trim>
 	</insert>
@@ -178,6 +194,12 @@
 			<if test="newsContent != null" >
 				news_content = #{newsContent,jdbcType=LONGVARCHAR},
 			</if>
+			<if test="newsBrowsenum != null">
+				news_browsenum = #{newsBrowsenum,jdbcType=INTEGER},
+			</if>
+			<if test="newsRecommendnum != null">
+				news_recommendnum = #{newsRecommendnum,jdbcType=INTEGER},
+			</if>
 		</set>
 		where id = #{id,jdbcType=INTEGER}
 	</update>
@@ -193,7 +215,9 @@
 		new_updatetime = #{newUpdatetime,jdbcType=TIMESTAMP},
 		news_delete = #{newsDelete,jdbcType=INTEGER},
 		news_mark = #{newsMark,jdbcType=VARCHAR},
-		news_content = #{newsContent,jdbcType=LONGVARCHAR}
+		news_content = #{newsContent,jdbcType=LONGVARCHAR},
+		 news_browsenum = #{newsBrowsenum,jdbcType=INTEGER},
+      news_recommendnum = #{newsRecommendnum,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.online.college.core.news.domain.News" >
@@ -207,7 +231,9 @@
 		news_admin = #{newsAdmin,jdbcType=VARCHAR},
 		new_updatetime = #{newUpdatetime,jdbcType=TIMESTAMP},
 		news_delete = #{newsDelete,jdbcType=INTEGER},
-		news_mark = #{newsMark,jdbcType=VARCHAR}
+		news_mark = #{newsMark,jdbcType=VARCHAR},
+		 news_browsenum = #{newsBrowsenum,jdbcType=INTEGER},
+      news_recommendnum = #{newsRecommendnum,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<update id="deleteByPrimaryKey" parameterType="java.lang.Integer">
