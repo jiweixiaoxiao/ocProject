@@ -2,6 +2,7 @@ package com.online.college.service;
 
 import java.io.File;
 
+import com.online.college.core.picture.service.PictureService;
 import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
@@ -16,14 +17,13 @@ public class QiNiuTest extends TestCase {
 
 	public void testImages() {
 		//测试上传图片
-		//byte[] buff = CommonUtil.getFileBytes(new File("D://2222.mp4"));
-		//String key = QiniuStorage.uploadImage(buff);
-		//System.out.println("key = " + key);
-		
-	//	String key = "/default/all/0/0b75266553d24506a1df015f2b52d2f8.jpeg";
+		byte[] buff = CommonUtil.getFileBytes(new File("D://pic//2.jpg"));
+		String key = QiniuStorage.uploadImage(buff);
+		System.out.println("key = " + key);
+		//String key = "/default/all/0/80aa87d3de0e4e8295ea5a735cf80499";
 		//测试下载图片
-		String url = QiniuStorage.getUrl("uizhivedio");
-		System.out.println("url = " + url);
+		//String url = QiniuStorage.getUrl(key);
+		//System.out.println("url = " + url);
 
 		//测试下载不同大小的图片
 //		url = QiniuStorage.getUrl(key,ThumbModel.THUMB_256);
