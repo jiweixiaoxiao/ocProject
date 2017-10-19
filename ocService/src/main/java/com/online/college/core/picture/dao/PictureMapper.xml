@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.online.college.core.picture.dao.PictureMapper" >
+  <resultMap id="BaseResultMap" type="com.online.college.core.picture.domain.Picture" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="picture_key" property="pictureKey" jdbcType="VARCHAR" />
+    <result column="picture_spacetype" property="pictureSpacetype" jdbcType="INTEGER" />
+    <result column="picture_spacename" property="pictureSpacename" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, picture_key, picture_spacetype, picture_spacename
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from tb_picture
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from tb_picture
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.online.college.core.picture.domain.Picture" >
+    insert into tb_picture (id, picture_key, picture_spacetype, 
+      picture_spacename)
+    values (#{id,jdbcType=INTEGER}, #{pictureKey,jdbcType=VARCHAR}, #{pictureSpacetype,jdbcType=INTEGER}, 
+      #{pictureSpacename,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.online.college.core.picture.domain.Picture" >
+    insert into tb_picture
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="pictureKey != null" >
+        picture_key,
+      </if>
+      <if test="pictureSpacetype != null" >
+        picture_spacetype,
+      </if>
+      <if test="pictureSpacename != null" >
+        picture_spacename,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="pictureKey != null" >
+        #{pictureKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureSpacetype != null" >
+        #{pictureSpacetype,jdbcType=INTEGER},
+      </if>
+      <if test="pictureSpacename != null" >
+        #{pictureSpacename,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.online.college.core.picture.domain.Picture" >
+    update tb_picture
+    <set >
+      <if test="pictureKey != null" >
+        picture_key = #{pictureKey,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureSpacetype != null" >
+        picture_spacetype = #{pictureSpacetype,jdbcType=INTEGER},
+      </if>
+      <if test="pictureSpacename != null" >
+        picture_spacename = #{pictureSpacename,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.online.college.core.picture.domain.Picture" >
+    update tb_picture
+    set picture_key = #{pictureKey,jdbcType=VARCHAR},
+      picture_spacetype = #{pictureSpacetype,jdbcType=INTEGER},
+      picture_spacename = #{pictureSpacename,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -62,8 +62,8 @@ public class NewsServiceImpl implements InewsService {
     @Override
     public TailPage<News> queryPage(News news, TailPage<News> tailPage) {
         List<News> newsList = newsDao.queryPage(news,tailPage);
-        int total = newsDao.getTotalItemsCount();
-        tailPage.setItemsTotalCount(total);
+        int itemsTotalCount = newsDao.getTotalItemsCount();
+        tailPage.setItemsTotalCount(itemsTotalCount);
         tailPage.setItems(newsList);
         return tailPage;
     }

@@ -30,10 +30,12 @@ public class NewsController {
     @RequestMapping("/pageList")
     public ModelAndView pageList(News news, TailPage<News> page){
         ModelAndView modelAndView = new ModelAndView("cms/news/newsList");
-        modelAndView.addObject("curNav","news");
+
         page = newsService.queryPage(news,page);
-        modelAndView.addObject(page);
-        modelAndView.addObject(news);
+        page.setPageSize(5);
+        modelAndView.addObject("page",page);
+        modelAndView.addObject("curNav","news");
+        modelAndView.addObject("news",news);
         return modelAndView;
     }
 
@@ -58,7 +60,12 @@ public class NewsController {
         return null;
     }
 
-
+    @RequestMapping("/toAddNewsPages")
+    public ModelAndView toAddNewsPages(){
+        ModelAndView modelAndView = new ModelAndView("cms/news/addNews");
+        modelAndView.addObject("curNav","news");
+        return modelAndView;
+    }
 
 
 }

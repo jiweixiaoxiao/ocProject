@@ -19,18 +19,18 @@ public class ResultVoUtils {
     private String code;
     private String msg;
 
-    public static String success() throws IOException {
+    public static String success() {
         return success(null);
     }
     @Deprecated
-    public  static String success(String msgp,String codep) throws  IOException{
+    public  static String success(String msgp,String codep){
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(codep);
         resultVo.setMsg(msgp);
         return  JSON.toJSONString(resultVo);
     }
 
-    public static String success(Object object) throws IOException {
+    public static String success(Object object){
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(ResultEnum.SUCCESS.getCode());
         resultVo.setMsg(ResultEnum.SUCCESS.getMsg());
@@ -39,7 +39,7 @@ public class ResultVoUtils {
         return result;
     }
 
-    public  static String message (String msgp,String codep) throws  IOException{
+    public  static String message (String msgp,String codep){
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(codep);
         resultVo.setMsg(msgp);
@@ -47,7 +47,7 @@ public class ResultVoUtils {
     }
 
 
-    public static String error() throws IOException {
+    public static String error() {
         ResultVo resultVo = new ResultVo();
         resultVo.setCode(ResultEnum.ERROR.getCode());
         resultVo.setMsg(ResultEnum.ERROR.getMsg());

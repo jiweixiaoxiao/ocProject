@@ -1,5 +1,8 @@
 package com.online.college.service;
 
+import com.online.college.core.picture.domain.Picture;
+import com.online.college.core.picture.service.PictureService;
+import com.online.college.core.picture.service.impl.PictureServiceImpl;
 import junit.framework.TestCase;
 
 import org.apache.log4j.Logger;
@@ -15,7 +18,20 @@ import com.online.college.core.auth.service.IAuthUserService;
 public class CRUDTest extends TestCase {
 	
 	Logger log = Logger.getLogger(CRUDTest.class);
-	
+
+
+	public void testPicInsert(){
+		PictureService pictureService = (PictureService)SpringBeanFactory.getBean("pictureServiceImpl");
+		QiNiuTest qiNiuTest = new QiNiuTest();
+//		String key = qiNiuTest.testImages();
+//		Picture picture = new Picture();
+//		picture.setPictureKey(key);
+//		picture.setPictureSpacetype(1);
+//		picture.setPictureSpacename("mydatasource");
+//		String result = pictureService.insertOnePic(picture);
+		//System.out.println(result);
+	}
+
 	/**
 	 * 测试创建
 	 */

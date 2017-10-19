@@ -40,7 +40,7 @@ public class ApplyUserController {
                 StringUtils.isEmpty(entity.getMemberEmail())){
             try {
                 return request.getParameter("callback")+"("+ResultVoUtils.message("存在空值","104")+")";
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -52,7 +52,7 @@ public class ApplyUserController {
             String resultErr = null;
             try {
                 resultErr = ResultVoUtils.message("服务器异常，请稍后再试","106");
-            } catch (IOException e1) {
+            } catch (Exception e1) {
                 e1.printStackTrace();
             }
             return request.getParameter("callback")+"("+resultErr+")";

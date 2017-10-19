@@ -43,7 +43,7 @@ public class MemberUserService implements IMemberUserService {
 			else {
 				return ResultVoUtils.error();
 			}
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -72,7 +72,7 @@ public class MemberUserService implements IMemberUserService {
 				return ResultVoUtils.success("删除成功","1");
 			}
 			return ResultVoUtils.error();
-		} catch (IOException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
