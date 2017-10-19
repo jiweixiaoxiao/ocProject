@@ -1,3 +1,5 @@
 function addtonew(){
-    window.location.href="${s.base}/news/toAddNewsPages.html";
+    alert("11");
+    window.location.href="toAddNew.html";
+    window.event.returnValue=false;
 }
