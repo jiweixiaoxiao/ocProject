@@ -63,6 +63,7 @@ public class NewsController {
     @RequestMapping("/toAddNewsPages")
     public ModelAndView toAddNewsPages(){
         ModelAndView modelAndView = new ModelAndView("cms/news/addNews");
+        modelAndView.addObject("curNav","news");
         return modelAndView;
     }
 
